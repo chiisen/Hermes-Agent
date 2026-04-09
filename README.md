@@ -331,6 +331,14 @@ telegram.error.NetworkError: httpx.ReadError
 
 ---
 
+## 📚 延伸文件
+
+| 文件 | 說明 |
+|---|---|
+| [🧠 MemPalace 記憶轉移指南](docs/MEMPALACE_MIGRATION.md) | 如何將 MemPalace 的結構化記憶（Wings、Drawers、知識圖譜）無縫遷移至 Hermes Agent，實現零 Token 消耗的經驗傳承。包含四階段轉移流程與實用指令速查。 |
+
+---
+
 ## 🔗 參考資源
 
 - **官方文件**：[hermes-agent.nousresearch.com/docs](https://hermes-agent.nousresearch.com/docs)
