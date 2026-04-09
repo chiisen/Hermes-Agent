@@ -186,6 +186,83 @@ uv pip install -e "./tinker-atropos"
 
 ---
 
+## 🛠️ 疑難排解 (Troubleshooting)
+
+### macOS 執行 `hermes setup` 後崩潰：`OSError: [Errno 22] Invalid argument`
+
+**錯誤訊息**：
+```
+OSError: [Errno 22] Invalid argument
+  File ".../selectors.py", line 523, in register
+    self._selector.control([kev], 0, 0)
+```
+
+**原因**：`hermes setup` 結束後會自動呼叫 `_offer_launch_chat()` 啟動對話介面。若 `stdin` 不是真正的 tty（例如透過管線執行），`prompt_toolkit` 嘗試將 `fd 0` 註冊到 macOS `kqueue` selector 時會觸發 `EINVAL`。
+
+**修復方式**：
+
+編輯 `~/.hermes/hermes-agent/hermes_cli/setup.py`，在 `_offer_launch_chat()` 函數中加入 `isatty()` 檢查：
+
+```python
+def _offer_launch_chat():
+    """Prompt the user to jump straight into chat after setup."""
+    import sys
+    if not sys.stdin.isatty():
+        return  # 非 tty 環境直接返回，避免 prompt_toolkit 崩潰
+    print()
+    if prompt_yes_no("Launch hermes chat now?", True):
+        # ... 原有程式碼
+```
+
+**臨時解法**：直接在終端機手動執行 `hermes` 啟動對話（確保是互動式 tty 環境即可）。
+
+**官方 Issue**：[NousResearch/hermes-agent#5884](https://github.com/NousResearch/hermes-agent/issues/5884)
+
+---
+
+### Telegram 無法收發訊息：必須使用 `hermes gateway` 而非 `hermes`
+
+**問題**：
+在 `.env` 中已正確設定 `TELEGRAM_BOT_TOKEN`、`TELEGRAM_ALLOWED_USERS`，但使用 `hermes` 啟動後，Telegram Bot **無法收發訊息**（CLI 聊天正常）。
+
+**原因**：
+`hermes` 與 `hermes gateway` 是**雙入口架構**，各自負責不同功能：
+
+| 指令 | 用途 | 是否啟用訊息閘道 |
+|---|---|---|
+| `hermes` | 本地互動式 CLI 對話 | ❌ 不啟動 Telegram/Discord/Slack |
+| `hermes gateway` | 訊息平台閘道 + Cron 排程器 | ✅ 啟動 Telegram/Discord/Slack 等平台監聽 |
+
+`hermes` 只負責本地 TUI 對話，**不會載入 Gateway 模組**，因此即使 `.env` 設定正確，Telegram Bot 也不會啟動 Polling。
+
+**正確做法**：
+若要使用 Telegram（或其他訊息平台）與 Agent 對話，**必須**執行：
+
+```bash
+hermes gateway
+```
+
+啟動後會看到：
+```
+┌─────────────────────────────────────────────────────────┐
+│           ⚕ Hermes Gateway Starting...                 │
+├─────────────────────────────────────────────────────────┤
+│  Messaging platforms + cron scheduler                    │
+│  Press Ctrl+C to stop                                   │
+└─────────────────────────────────────────────────────────┘
+```
+
+表示 Telegram 等平台已開始監聽訊息，此時傳送訊息給 Bot 即可正常對話。
+
+**補充**：
+- Gateway 支援同時監聽多個平台（Telegram + Discord + Slack + WhatsApp + Signal + Email）。
+- 若需背景運行，可用 `nohup` 或 `screen` / `tmux` 保持 Gateway 持續運行：
+  ```bash
+  nohup hermes gateway > hermes_gateway.log 2>&1 &
+  ```
+
+---
+
 ## 🔗 參考資源
 
 - **官方文件**：[hermes-agent.nousresearch.com/docs](https://hermes-agent.nousresearch.com/docs)
