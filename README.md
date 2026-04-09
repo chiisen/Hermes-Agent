@@ -186,6 +186,29 @@ uv pip install -e "./tinker-atropos"
 
 ---
 
+## 🚀 進階技巧：零 Token 訓練與 Cursor 經驗轉移
+
+### 如何將 Cursor 的對話經驗轉移給 Hermes Agent？
+
+Hermes Agent 能從實踐中自主生成 Skill，但你也可以**零 Token 消耗**地將 Cursor 的成功經驗轉移過來。核心邏輯是：**把 Cursor 的「對話過程」轉為「指令手冊」**。
+
+**操作步驟**：
+1. **在 Cursor 提煉 SOP**：
+   在對話結尾對 Cursor 說：「把我們剛才成功的步驟，總結成一個 SOP 教學 (Markdown)。」
+2. **餵給 Hermes 生成 Skill**：
+   將該 SOP 貼給 Hermes Agent 並下達指令：「把這個做成你的 Skill」，它會自動將內容封裝並永久記憶。
+3. **未來應用**：
+   下次只需對 Hermes 下達簡短指令（如「部署專案」），它就會調用該 Skill 重複執行，無需重新對話。
+
+**工具角色對照**：
+
+| 工具 | 角色 | 轉移內容 |
+|---|---|---|
+| **Cursor** | 即時協作探索 | 對話中的成功步驟與專案規範 |
+| **Hermes** | 自主執行與記憶 | 封裝為 Skill (永久記憶、跨會話使用) |
+
+---
+
 ## 🛠️ 疑難排解 (Troubleshooting)
 
 ### macOS 執行 `hermes setup` 後崩潰：`OSError: [Errno 22] Invalid argument`
