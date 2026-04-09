@@ -335,6 +335,7 @@ telegram.error.NetworkError: httpx.ReadError
 
 | 文件 | 說明 |
 |---|---|
+| [🚀 推薦工作流程](docs/RECOMMENDED_WORKFLOWS.md) | 整理自官方與社群的五大推薦工作流程：個人知識助手、Cron 自動化報表、AI 產品經理、開發自動化、多 Agent 平行處理。包含設定步驟、範例與最佳實踐總結。 |
 | [🧠 MemPalace 記憶轉移指南](docs/MEMPALACE_MIGRATION.md) | 如何將 MemPalace 的結構化記憶（Wings、Drawers、知識圖譜）無縫遷移至 Hermes Agent，實現零 Token 消耗的經驗傳承。包含四階段轉移流程與實用指令速查。 |
 
 ---
