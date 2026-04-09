@@ -263,6 +263,26 @@ hermes gateway
 
 ---
 
+### `hermes` 與 `hermes gateway` 能同時執行嗎？
+
+**不能同時執行。** 兩者會產生資源衝突：
+
+| 衝突項目 | 說明 |
+|---|---|
+| **Session 狀態** | 兩者存取相同的會話歷史與記憶檔案，可能導致**狀態不一致** |
+| **Bot Token 鎖定** | Gateway 獨佔 Telegram/Discord 等平台的 Bot Polling，同時啟動會產生衝突 |
+| **終端機佔用** | `hermes` 需要獨佔 TUI 互動介面 |
+
+**正確做法**：
+
+| 情境 | 使用指令 |
+|---|---|
+| 僅需本地終端機對話 | `hermes` |
+| 需使用 Telegram / Discord 等平台 | `hermes gateway` |
+| 背景持續監聽 Telegram | `tmux new-session -d -s hermes-gateway 'hermes gateway'` |
+
+---
+
 ## 🔗 參考資源
 
 - **官方文件**：[hermes-agent.nousresearch.com/docs](https://hermes-agent.nousresearch.com/docs)
