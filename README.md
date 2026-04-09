@@ -283,6 +283,31 @@ hermes gateway
 
 ---
 
+### 按下 `Ctrl+C` 關閉 `hermes gateway` 時出現 `httpx.ReadError` / `telegram.error.NetworkError`
+
+**錯誤訊息**：
+```
+ERROR telegram.ext.Updater: Error while calling `get_updates` one more time
+to mark all fetched updates. Suppressing error to ensure graceful shutdown.
+...
+telegram.error.NetworkError: httpx.ReadError
+```
+
+**原因**：
+`hermes gateway` 按下 `Ctrl+C` 後開始關閉流程。Telegram 的 `Updater` 在退出前會嘗試呼叫 `get_updates` 一次，確保所有已取得的更新都被標記為已讀。但此時 `Ctrl+C` 已經中斷了網路連線，導致 `httpx.ReadError`。
+
+**是否影響功能**：
+**不影響。** 這只是關閉階段的**警告性錯誤**，Telegram 框架預期此情況並會自動處理。關鍵訊息：
+> `Suppressing error to ensure graceful shutdown.`
+
+下次啟動 Gateway 時，Telegram 會從正確的 `offset` 繼續拉取更新，不會遺失訊息。
+
+**處理方式**：
+- **直接忽略**即可，這是 Long Polling 模式下的正常行為。
+- 若覺得日誌太吵，可用 `tmux` 在背景運行，關閉時直接 `tmux kill-session` 減少視覺干擾。
+
+---
+
 ## 🔗 參考資源
 
 - **官方文件**：[hermes-agent.nousresearch.com/docs](https://hermes-agent.nousresearch.com/docs)
