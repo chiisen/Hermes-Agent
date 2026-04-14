@@ -155,6 +155,21 @@ uv pip install -e "./tinker-atropos"
 
 ---
 
+## ⚙️ 環境變數設定 (.env)
+
+專案啟動前，請在根目錄建立 `.env` 檔案（可參考 `.env.example`），並填入必要的 API 金鑰：
+
+| 變數名稱 | 說明 | 取得連結 |
+|---|---|---|
+| `CWB_API_KEY` | 中央氣象署 (CWA) 開放資料平台 API Key | [CWA 開放資料平台](https://opendata.cwa.gov.tw/) |
+
+**範例配置**：
+```env
+CWB_API_KEY=your_cwb_api_key_here
+```
+
+---
+
 ## 💻 常用指令
 
 | 指令 | 用途 |

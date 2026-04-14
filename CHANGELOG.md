@@ -12,6 +12,8 @@
 - 新增技術架構、Agent 架構設計、MCP 支援說明
 - 特別強調 Skills 自主生成核心亮點功能
 - 補充安裝方式、常用指令與斜線指令對照表
+- 新增 `.env.example` 範例檔案
+- 在 README.md 中建立「環境變數設定 (.env)」說明區段，包含 `CWB_API_KEY` 設定
 
 ### Fixed
 - 新增疑難排解章節 (Troubleshooting)
