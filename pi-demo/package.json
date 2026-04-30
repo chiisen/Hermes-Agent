@@ -1,0 +1,15 @@
+{
+  "name": "sum-cli",
+  "version": "1.0.0",
+  "description": "一個簡單的 CLI 工具，計算兩數之和",
+  "main": "index.js",
+  "bin": {
+    "sum": "./index.js"
+  },
+  "scripts": {
+    "test": "node index.js 5 3"
+  },
+  "keywords": ["cli", "sum", "calculator"],
+  "author": "",
+  "license": "MIT"
+}
