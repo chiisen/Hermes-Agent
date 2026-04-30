@@ -353,6 +353,22 @@ telegram.error.NetworkError: httpx.ReadError
 | [🚀 推薦工作流程](docs/RECOMMENDED_WORKFLOWS.md) | 整理自官方與社群的五大推薦工作流程：個人知識助手、Cron 自動化報表、AI 產品經理、開發自動化、多 Agent 平行處理。包含設定步驟、範例與最佳實踐總結。 |
 | [🧠 MemPalace 記憶轉移指南](docs/MEMPALACE_MIGRATION.md) | 如何將 MemPalace 的結構化記憶（Wings、Drawers、知識圖譜）無縫遷移至 Hermes Agent，實現零 Token 消耗的經驗傳承。包含四階段轉移流程與實用指令速查。 |
 
+### Demo 專案：pi-demo
+
+我們創建了一個 demo 專案 `pi-demo` 來展示如何使用 pi-mono 框架創建 Node.js CLI 工具：
+
+- **位置**：`/Users/liao-eli/github/Hermes-Agent/pi-demo/`
+- **功能**：一個簡單的 CLI 工具，用於計算兩個數字的總和
+- **創建方式**：使用 pi CLI 工具生成
+- **特色**：
+  - 支援命令列參數輸入
+  - 包含錯誤處理機制
+  - 提供幫助說明選項 (-h/--help)
+  - 支援整數和浮點數運算
+  - 包含完整的 package.json 配置
+
+這個 demo 展示了 pi-mono 的能力，能夠快速生成一個完整、可運行且具有良好錯誤處理的 CLI 工具。
+
 ---
 
 ## 🔗 參考資源
@@ -363,4 +379,4 @@ telegram.error.NetworkError: httpx.ReadError
 
 ---
 
-*最後更新：2026-04-09*
+*最後更新：2026-04-30*
