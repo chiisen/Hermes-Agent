@@ -1,0 +1,32 @@
+# 編譯後的執行檔
+add-demo
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# 測試相關
+*.test
+*.out
+coverage.txt
+
+# Go 工作區
+go.work
+go.work.sum
+
+# 依賴目錄
+vendor/
+
+# IDE 相關
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+
+# 除錯相關
+debug
