@@ -1,0 +1,18 @@
+# 编译输出
+/target/
+
+# Cargo lock 文件 (对于库项目可以忽略)
+# Cargo.lock
+
+# IDE 和编辑器
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+
+# 调试文件
+*.pdb
