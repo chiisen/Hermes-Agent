@@ -14,6 +14,7 @@
 - 補充安裝方式、常用指令與斜線指令對照表
 - 新增 `.env.example` 範例檔案
 - 在 README.md 中建立「環境變數設定 (.env)」說明區段，包含 `CWB_API_KEY` 設定
+- 新增 MiniMax API 404 排查 Runbook，記錄 base URL 設錯的快速定位與修復流程
 
 ### Fixed
 - 新增疑難排解章節 (Troubleshooting)
