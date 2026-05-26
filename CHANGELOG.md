@@ -7,6 +7,7 @@
 ## [Unreleased]
 
 ### Added
+- 新增 `docs/DIFF.md`，詳細對比 `jubilant_jy`（三方）與 `mfs_jy`（四方）兩套 Docker Compose 設定檔的異同點（包含 phpMyAdmin 的 Port/環境變數對應與 `.env` 設定差異等）
 - 撰寫完整 Hermes-Agent 功能說明文件 (README.md)
 - 參考官方 GitHub README 重新撰寫專案簡介、六大核心功能
 - 新增技術架構、Agent 架構設計、MCP 支援說明
